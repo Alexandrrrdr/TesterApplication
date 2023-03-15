@@ -1,4 +1,4 @@
-package com.alexalban.testerapplication
+package com.alexalban.testerapplication.broadcasts
 
 import android.content.BroadcastReceiver
 import android.content.Context

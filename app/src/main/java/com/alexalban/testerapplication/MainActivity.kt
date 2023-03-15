@@ -4,7 +4,10 @@ import android.app.DownloadManager
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
+import com.alexalban.testerapplication.broadcasts.DownloadCompletedReceiver
 import com.alexalban.testerapplication.databinding.ActivityMainBinding
+import com.alexalban.testerapplication.installers.IntentInstallerVersion
+import com.alexalban.testerapplication.installers.PackageInstallerVersion
 import moxy.MvpAppCompatActivity
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
@@ -14,7 +17,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
     @InjectPresenter
     lateinit var mainPresenter: MainPresenter
-    private val intentInstallerVersion =  IntentInstallerVersion(app = this)
+    private val intentInstallerVersion =  IntentInstallerVersion(context = this)
     private val packageInstallerVersion =  PackageInstallerVersion()
 
     private val downloader = Downloader(this)

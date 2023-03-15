@@ -1,4 +1,4 @@
-package com.alexalban.testerapplication
+package com.alexalban.testerapplication.utils
 
 object Constants {
     const val MAIN_URL = "https://drive.google.com/file/d/15s8mqLxzWOQVvPFk_JXxeADeg2f0DPlj/view?usp=share_link"

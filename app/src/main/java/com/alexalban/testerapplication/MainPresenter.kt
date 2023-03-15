@@ -1,7 +1,9 @@
 package com.alexalban.testerapplication
 
 import android.content.Context
-import com.alexalban.testerapplication.Constants.MAIN_URL
+import com.alexalban.testerapplication.installers.IntentInstallerVersion
+import com.alexalban.testerapplication.installers.PackageInstallerVersion
+import com.alexalban.testerapplication.utils.Constants.MAIN_URL
 import moxy.InjectViewState
 import moxy.MvpPresenter
 
@@ -16,16 +18,10 @@ class MainPresenter(
 
 
     fun getAppAndInstallViaIntent(): Long {
-        viewState.disableButtons()
-        val downloadId = downloader.downloadFile(MAIN_URL)
-        viewState.enableButtons()
-        return downloadId
+        return downloader.downloadFile(MAIN_URL)
     }
 
     fun getAppAndInstallViaPackInstaller(): Long {
-        viewState.disableButtons()
-        val downloadId = downloader.downloadFile(MAIN_URL)
-        viewState.enableButtons()
-        return downloadId
+        return downloader.downloadFile(MAIN_URL)
     }
 }

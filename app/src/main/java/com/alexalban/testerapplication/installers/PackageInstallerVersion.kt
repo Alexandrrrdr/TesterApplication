@@ -1,10 +1,12 @@
-package com.alexalban.testerapplication
+package com.alexalban.testerapplication.installers
 
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageInstaller
 import android.net.Uri
+import com.alexalban.testerapplication.broadcasts.PackageInstallReceiver
+import com.alexalban.testerapplication.utils.Constants
 
 class PackageInstallerVersion() {
 
