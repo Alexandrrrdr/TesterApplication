@@ -17,11 +17,9 @@ class DownloadCompletedReceiver(): BroadcastReceiver() {
 
     private lateinit var downloadManager: DownloadManager
     private var filePatch = ""
-    private lateinit var intentInstallerVersion: IntentInstallerVersion
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onReceive(context: Context, intent: Intent) {
-        intentInstallerVersion = IntentInstallerVersion(context = context)
         downloadManager = context.getSystemService(DownloadManager::class.java)
         val broadcastDownloadId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
         var downloadingId = 0L
@@ -31,13 +29,9 @@ class DownloadCompletedReceiver(): BroadcastReceiver() {
         }
         if (broadcastDownloadId == downloadingId){
             if (getDownloadStatus(id = downloadingId, dm = downloadManager) == DownloadManager.STATUS_SUCCESSFUL){
-                Log.d("info", "After downloaded, id is - $downloadingId")
-                Toast.makeText(context, "Download complete $downloadingId", Toast.LENGTH_SHORT).show()
-                intentInstallerVersion.intentInstallation(filePatch.toUri())
+                Toast.makeText(context, "Downloaded successful", Toast.LENGTH_SHORT).show()
             } else {
-                Log.d("info", "Before download, id is - $downloadingId")
-                Toast.makeText(context, "Download incomplete $downloadingId", Toast.LENGTH_SHORT).show()
-                intentInstallerVersion.intentInstallation(filePatch.toUri())
+                Toast.makeText(context, "Download in progress", Toast.LENGTH_SHORT).show()
             }
         }
     }

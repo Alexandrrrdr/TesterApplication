@@ -26,7 +26,7 @@ class Downloader(private val context: Context) {
         val file = File(destination)
         return if (file.exists()) {
             Toast.makeText(context, "File exists, download autocanceled", Toast.LENGTH_SHORT).show()
-            0
+            0L
         } else {
             Toast.makeText(context, "File doesn't exists, download started", Toast.LENGTH_SHORT).show()
             downloadFile(uriAddress)

@@ -8,15 +8,13 @@ import android.net.Uri
 import com.alexalban.testerapplication.broadcasts.PackageInstallReceiver
 import com.alexalban.testerapplication.utils.Constants
 
-class PackageInstallerVersion() {
+class PackageInstallerVersion(private val context: Context) {
 
     private val packageInstalledAction =
         "com.example.testappinstaller.data.repository.SESSION_API_PACKAGE_INSTALLED"
 
     companion object {
-        private const val APK_NAME = "app_tester.apk"
         private const val PACKAGE = "package"
-        private const val PACKAGE_NAME = "com.example.testappinstaller"
     }
 
     fun packageInstallerDownloader(apkUri: Uri, context: Context) {
@@ -42,11 +40,6 @@ class PackageInstallerVersion() {
                 intent,
                 PendingIntent.FLAG_UPDATE_CURRENT
             )
-//            val intent = Intent(app, PackageInstallerVersion::class.java)
-//            intent.action = packageInstalledAction
-//            val pendingIntent: PendingIntent = PendingIntent.getActivity(app, 0, intent, 0)
-//            val intentSender: IntentSender = pendingIntent.intentSender
-//            session.commit(intentSender)
 
             session.commit(pendingIntent.intentSender)
             session.close()

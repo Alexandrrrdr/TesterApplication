@@ -6,6 +6,6 @@ import moxy.viewstate.strategy.StateStrategyType
 
 @StateStrategyType(value = SingleStateStrategy::class)
 interface MainView: MvpView {
-    fun enableButtons()
-    fun disableButtons()
+    fun downloaded(path: String, loadingId: Long)
+    fun installed()
 }
