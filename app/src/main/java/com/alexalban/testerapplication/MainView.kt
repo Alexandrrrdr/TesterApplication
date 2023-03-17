@@ -6,6 +6,6 @@ import moxy.viewstate.strategy.StateStrategyType
 
 @StateStrategyType(value = SingleStateStrategy::class)
 interface MainView: MvpView {
-    fun downloaded(path: String, loadingId: Long)
+    fun downloaded()
     fun installed()
 }

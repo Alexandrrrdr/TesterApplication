@@ -7,7 +7,7 @@ import android.net.Uri
 import android.os.Build
 import android.util.Log
 import androidx.core.content.FileProvider
-import com.alexalban.testerapplication.BuildConfig
+import com.alexalban.testerapplication.BuildConfig.APPLICATION_ID
 import java.io.File
 
 class IntentInstallerVersion(private val context: Context) {
@@ -20,15 +20,15 @@ class IntentInstallerVersion(private val context: Context) {
         println("It started!!!")
         val file = File(uri)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
-//            val contentUri = FileProvider.getUriForFile(context
-//                ,BuildConfig.APPLICATION_ID + ".provider"
-//                ,file)
+
+            val contentProvider = FileProvider.getUriForFile(context,
+                "$APPLICATION_ID.provider", file)
             val install = Intent(Intent.ACTION_VIEW)
-            install.setDataAndType(uriFromFile(context, file), MIME_TYPE)
+            install.setDataAndType(contentProvider, MIME_TYPE)
             install.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             install.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
             install.putExtra(Intent.EXTRA_NOT_UNKNOWN_SOURCE, true)
-//            install.data = contentUri
+            install.data = contentProvider
             try {
                 context.startActivity(install)
             } catch (e: ActivityNotFoundException){
@@ -41,15 +41,6 @@ class IntentInstallerVersion(private val context: Context) {
             install.setDataAndType(Uri.parse(uri), MIME_TYPE)
             install.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             context.startActivity(install)
-        }
-    }
-
-    fun uriFromFile(context: Context?, file: File?): Uri? {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            FileProvider.getUriForFile(context!!, BuildConfig.APPLICATION_ID + ".provider", file!!
-            )
-        } else {
-            Uri.fromFile(file)
         }
     }
 }
